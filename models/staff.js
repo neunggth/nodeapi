@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 // const Schema = mongoose.Schema;
 
-// Design Schema
+// Design Schema 
 // String is shorthand for {type: String}
 const schema = new mongoose.Schema(
   {

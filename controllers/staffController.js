@@ -74,3 +74,51 @@ exports.destroy = async (req, res, next) => {
     });
   }
 };
+
+// Update (1.find => 2.UpdateOne) ส่งข้อมูลไปให้ครบเพราะ propty หาย
+exports.update = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { name, salary, address } = req.body;
+
+    // (1.find => 2.UpdateOne)
+    // const staff = await Staff.findById(id)
+    // staff.name = name;
+    // staff.salary = salary;
+    // staff.address = address;
+    // await staff.save();
+
+    //* 2
+    // const staff = await Staff.findByIdAndUpdate(id, {
+    //   name : name,
+    //   salary : salary,
+    //   address: address
+    // })
+    // console.log(staff);
+
+    const staff = await Staff.updateOne(
+      { _id: id },
+      {
+        name: name,
+        salary: salary,
+        address: address,
+      }
+    );
+    // console.log(staff);
+    
+    if (staff.nModified === 0) {
+      throw new Error(" Can't Update staff Data");
+    } else {
+      res.status(200).json({
+        message: "Edited and Save!!",
+      });
+    }
+
+  } catch (error) {
+    res.status(400).json({
+      error: {
+        message: "Bad gateway" + error.message,
+      },
+    });
+  }
+};

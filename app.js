@@ -12,10 +12,12 @@ const staffRouter = require('./routes/staff');
 
 const app = express();
 
-//  ปิด warning line:16-17 
+//  (Connect mongoose) ปิด warning line:16-17 
 mongoose.connect('mongodb+srv://myuser01:ppp12345@mycluster-0onyo.mongodb.net/online_nodeapi?retryWrites=true&w=majority', {
   useNewUrlParser: true, 
-  useUnifiedTopology: true});
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+  useFindAndModify: false});
 
 
 // view engine setup
@@ -28,7 +30,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
+// SetRouter
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/company', companyRouter);
