@@ -3,12 +3,19 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const mongoose = require('mongoose');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const companyRouter = require('./routes/company');
 
 const app = express();
+
+//  ปิด warning line:16-17 
+mongoose.connect('mongodb+srv://myuser01:ppp12345@mycluster-0onyo.mongodb.net/online_nodeapi?retryWrites=true&w=majority', {
+  useNewUrlParser: true, 
+  useUnifiedTopology: true});
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

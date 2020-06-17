@@ -1,11 +1,14 @@
-exports.index = (req, res, next) => {
+const Company = require('../models/company')
+
+exports.index = async(req, res, next) => {
+
+    const company = await Company.findOne();
+        
+
+
   res.status(200).json({
-    data: {
-      name: "ABX engineering",
-      address: {
-        province: "bangkok",
-        postcode: 10230,
-      },
-    },
+    data: company
+
+    
   });
 };
