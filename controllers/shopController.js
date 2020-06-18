@@ -26,10 +26,21 @@ exports.index = async (req, res, next) => {
 exports.menu = async (req, res, next) => {
   // const menu = await Menu.find().select('+name -price');
   // const menu = await Menu.find().where('price').gt(300).sort('-_id');
-//   const menu = await Menu.find({ price: { $gte: 300 } });
-  const menu = await Menu.find({ price: { $gte: 300 } });
+  //  const menu = await Menu.find({ price: { $gte: 300 } });
+  // const menu = await Menu.find({ price: { $gte: 300 } });
+  const menu = await Menu.find().populate("shop", "name location").sort("-_id");
 
   res.status(200).json({
     data: menu,
+  });
+};
+
+// Get shop by id with menu
+exports.getShopWithMenu = async (req, res, next) => {
+  const { id } = req.params;
+  const shopWithMenu = await Shop.findById(id).populate('menus');
+
+  res.status(200).json({
+    data: shopWithMenu
   });
 };

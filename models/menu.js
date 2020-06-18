@@ -30,3 +30,6 @@ const menu = mongoose.model("Menu", schema);
 module.exports = menu;
 
 // Option timestamps ไม่ต้องใส่ createdAt และ updatedAt จะเพิ่ม timestamps Auto
+// toJSON: { virtuals: true } เพื่อแสดงผลออกมา
+// populate เหมือน LookUP 
+

@@ -12,10 +12,17 @@ const schema = new mongoose.Schema(
         lgn: Number },
   },
   {
+    toJSON: { virtuals: true},
     timestamps: true, 
     collection: "shops",
   }
 );
+
+schema.virtual('menus', { 
+  ref: 'Menu', //Link model Menu 
+  localField: '_id', //_id ฟิลด์ของของโมเดล Shop (ไฟล์นี้)
+  foreignField: 'shop' // shop ฟิลด์ของโมเดล Menu (fk)
+})
 
 const shop = mongoose.model("Shop", schema);
 
