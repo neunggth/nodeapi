@@ -44,3 +44,17 @@ exports.getShopWithMenu = async (req, res, next) => {
     data: shopWithMenu
   });
 };
+
+exports.insert = async (req, res, next) =>{
+    const { name, location } = req.body;
+    
+    let shop = new Shop({
+        name: name,
+        location: location
+    });
+    await shop.save()
+    
+    res.status(201).json({
+        message: 'Added have success!'
+    });
+}

@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const schema = new mongoose.Schema(
   {
     name: { type: String, required: true, trim: true },
-    photo: { type: String, default: 'No picture.png' },
+    photo: { type: String, default: 'noPicture.png' },
     location: { 
         lat: Number,
         lgn: Number },
